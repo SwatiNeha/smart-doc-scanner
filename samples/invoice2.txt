@@ -1,0 +1,23 @@
+Invoice 2022435
+SA Tax invoice
+Your Business
+BILL TO
+Your Client Issue date: 19/7/2022
+100 Harris St Due date: 3/8/2022
+Sydney NSW NSW 2009
+Australia Reference: 2022435
+Total due (AUD)
+$2,510.00
+Description Quantity Unit price ($) Amount ($)
+Services & products 1 100.00 100.00
+More services & products 1 2,000.00 2,000.00
+Subtotal: $2,100.00
+GST 10% from $100.00 $10.00
+GST 20% from $2,000.00 $400.00
+Total (AUD): $2,510.00
+A Issued by, signature:
+& +61200000000 @ www. yourbusinessname.com.au 4 email@yourbusinessname.com.au
+Your Business Name
+5 Martin Pl
+Sydney NSW 2000
+Australia

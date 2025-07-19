@@ -1,0 +1,26 @@
+Your Company Name
+123 Street Address, City, State, Zip/Post Code
+Phone Number, Email
+DATE:
+INVOICE NO:
+<Payment terms (due on receipt, due in X days)>
+BILL TO SHIP TO
+Contact Name Name / Dept
+Client
+Company
+Client Company Name Name
+Address Address
+Phone Phone
+DESCRIPTION QTY UNIT PRICE TOTAL
+Widget 1 1 $ 5.00 $ §.00
+Gadget 2 1 $ 7.00 $ 7.00
+Item 3 2 $ 6.00 $ 12.00
+$ -
+$ -
+$ -
+Remarks / Payment Instructions: SUBTOTAL $ 24.00
+DISCOUNT § 2.00
+TAX RATE 8.00%
+TOTAL TAX §$ 1.92
+SHIPPING/HANOLING 5.00
+Balance Due $ 28.92

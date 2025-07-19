@@ -1,0 +1,22 @@
+Business Name Invoice# OOO0CO
+Street Address, City, Country Issue date
+Zip Code mmiddiyyyy
+ee
+Business name
+Add a message here for your customer.
+BILL TO DETAILS PAYMENT
+Customer name Enter a brief description Due date mm/dd/yyyy
+Email address about your job or project. $0.00
+Phone number
+Street address
+Zip code, city, country
+ITEM QTY PRICE AMOUNT
+Item name fe) $0.00 $0.00
+Item name 0 $0.00 $0.00
+Item name fe) $0.00 $0.00
+Subtotal $000.00
+Tax $000.00
+Total Due $000.00
+Want to customize your invoice even more?
+Add taxes, discounts, and service charges with Square Invoices.
+Sign up for Square Invoices free Page 1
