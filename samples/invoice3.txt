@@ -1,18 +1,26 @@
-East Repair Inc.
-1912 Harvest Lane
-New York, NY 12210
-BILL TO SHIP TO INVOICE # US-001
-John Smith John Smith INVOICE DATE 1102/2019
-2 Court Square 3787 Pineview Drive PO.t 2312/2019
-New York, NY 12210 Cambridge, MA 12210 on
-DUE DATE 2602/2019
-ary DESCRIPTION UNIT PRICE AMOUNT
-1 Front and rear brake cables 100.00 100.00
-2 New set of pedal arms 15.00 30.00
-3 Labor 3hrs §.00 15.00
-Subtotal 145.00
-Sales Tax 6.25% 9.06
-TOTAL $154.06
-TERMS & CONDITIONS
-Payment is due within 15 days
-Please make checks payable to: East Repair Inc.
+Company Name INVOICE
+[Street Address]
+[City, ST ZIP] DATE 12/9/2019
+Phone: [000-000-0000] INVOICE # [123456]
+Fax: [000-000-0000] CUSTOMER ID [123]
+Website: som edomain.com DUE DATE 1/8/2020
+[Name]
+[Com pany Name]
+[Street Address]
+[City, ST ZIP]
+[Phone]
+DESCRIPTION TAXED AMOUNT
+[Service Fee] 230.00
+[Labor: 5 hours at $75/hr] 375.00
+Subtotal 950.00
+Taxable 345.00
+Tax rate 6.2508
+1. Total payment due in 30 days Tax due 21.56
+2. Please include the invoice number on your check Other -
+TOTAL =«$~~——«971.56-
+idake all checks payable to
+[Your Company Name]
+If you have any questions about this invoice, please contact
+[Name, Phone #, E-mail]
+Thank You For Your Business!
+https www vertex42 com ExcelTemelstes excel-invcice-templste html Invcice Temelste 9 2910-2019 by Vertex42 com

@@ -1,26 +1,23 @@
-Your Company Name
-123 Street Address, City, State, Zip/Post Code
-Phone Number, Email
-DATE:
-INVOICE NO:
-<Payment terms (due on receipt, due in X days)>
-BILL TO SHIP TO
-Contact Name Name / Dept
-Client
-Company
-Client Company Name Name
-Address Address
-Phone Phone
-DESCRIPTION QTY UNIT PRICE TOTAL
-Widget 1 1 $ 5.00 $ §.00
-Gadget 2 1 $ 7.00 $ 7.00
-Item 3 2 $ 6.00 $ 12.00
-$ -
-$ -
-$ -
-Remarks / Payment Instructions: SUBTOTAL $ 24.00
-DISCOUNT § 2.00
-TAX RATE 8.00%
-TOTAL TAX §$ 1.92
-SHIPPING/HANOLING 5.00
-Balance Due $ 28.92
+Invoice 2022435
+SA Tax invoice
+Your Business
+BILL TO
+Your Client Issue date: 19/7/2022
+100 Harris St Due date: 3/8/2022
+Sydney NSW NSW 2009
+Australia Reference: 2022435
+Total due (AUD)
+$2,510.00
+Description Quantity Unit price ($) Amount ($)
+Services & products 1 100.00 100.00
+More services & products 1 2,000.00 2,000.00
+Subtotal: $2,100.00
+GST 10% from $100.00 $10.00
+GST 20% from $2,000.00 $400.00
+Total (AUD): $2,510.00
+A Issued by, signature:
+& +61200000000 @ www. yourbusinessname.com.au 4 email@yourbusinessname.com.au
+Your Business Name
+5 Martin Pl
+Sydney NSW 2000
+Australia
