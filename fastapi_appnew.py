@@ -1,5 +1,7 @@
 # fastapi_app.py
 import os
+import asyncio
+from typing import List, Dict, Any
 import io
 import re
 import json
@@ -173,6 +175,33 @@ async def call_llm_async(ocr_text: str) -> dict:
             "tax_amount","total","balance_due","cash","change","gst_id"]
     return {k: parsed.get(k, "NOT FOUND") for k in keys}
 
+
+async def _process_one_upload(upload: UploadFile, include_ocr_text: bool) -> Dict[str, Any]:
+    try:
+        raw = await upload.read()
+        img = await run_in_threadpool(_bytes_to_cv_gray, raw)
+        ocr_text = (await run_in_threadpool(_ocr_tesseract, img)).strip()
+        if not ocr_text:
+            raise ValueError("Empty OCR result")
+
+        focused = focus_text(ocr_text)
+        fields = await call_llm_async(focused)
+
+        return {
+            "filename": upload.filename,
+            "fields": fields,
+            "ocr_text": ocr_text if include_ocr_text else None,
+            "model": LLM_MODEL,
+            "status": "ok"
+        }
+    except Exception as e:
+        # Return an error object for this file, don’t fail the whole batch
+        return {
+            "filename": getattr(upload, "filename", None),
+            "error": str(e),
+            "status": "error"
+        }
+
 # ===================== Middleware (timings) =====================
 @app.middleware("http")
 async def timing_log(request: Request, call_next):
@@ -244,3 +273,35 @@ async def extract_fields(
         ocr_text=ocr_text if include_ocr_text else None,
         model=LLM_MODEL
     )
+
+@app.post("/extract-batch")
+async def extract_batch(
+    files: List[UploadFile] = File(..., description="Upload multiple images"),
+    include_ocr_text: bool = Query(False, description="Return OCR text per file"),
+    x_api_key: str | None = Header(default=None),
+    max_concurrency: int = Query(4, ge=1, le=16, description="Parallel files to process")
+):
+    """
+    Concurrently extract fields for multiple receipts.
+    Returns a list of per-file results (success or error).
+    """
+    require_api_key(x_api_key)
+
+    # Guard: empty upload
+    if not files:
+        raise HTTPException(status_code=400, detail="No files provided.")
+
+    # Limit concurrency so we don't overwhelm CPU/LLM
+    sem = asyncio.Semaphore(max_concurrency)
+
+    async def _guarded_process(f: UploadFile):
+        async with sem:
+            return await _process_one_upload(f, include_ocr_text)
+
+    tasks = [asyncio.create_task(_guarded_process(f)) for f in files]
+    results = await asyncio.gather(*tasks, return_exceptions=False)
+
+    # Optional: summarize counts
+    ok = sum(1 for r in results if r.get("status") == "ok")
+    err = len(results) - ok
+    return {"summary": {"ok": ok, "error": err, "total": len(results)}, "results": results}
