@@ -47,7 +47,7 @@ If you’ve ever thought *“I wish I didn’t have to type numbers from receipt
 
 ### 2. Single vs Batch Invoice Pipeline
 <p align="center">
-  <img src="docs/single_vs_batch.png" alt="Single vs Batch pipelines" width="200">
+  <img src="docs/single_vs_batch.png" alt="Single vs Batch pipelines" width="300">
 </p>
 
 ### 3. Overall Architecture
