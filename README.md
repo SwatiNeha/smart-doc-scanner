@@ -221,7 +221,7 @@ docker run --rm -p 8001:8001 -p 8501:8501 \
   TESSERACT_CMD="C:\Program Files\Tesseract-OCR\tesseract.exe"
   ```
 
-  ## Known Limitations
+## Known Limitations
 
 - **Speed**: CPU-bound; batch can be slow. GPU acceleration is a future upgrade.  
 - **OCR Quality**: Blurry/low-contrast images reduce accuracy.  
