@@ -5,7 +5,7 @@ Process single or multiple images, extract key fields (invoice number, dates, to
 
 ---
 
-## ✨ Why use this?
+## Why use this?
 
 - **Save time:** Stop typing numbers from receipts/invoices.
 - **Reduce errors:** OCR + LLM > manual entry.
@@ -14,20 +14,7 @@ Process single or multiple images, extract key fields (invoice number, dates, to
 - **Portable:** Dockerized for “works everywhere” deployment.
 ---
 
-## ✨ Features
-
-- 🖼️ **Reads images & PDFs** (PNG, JPG/JPEG, WEBP, TIFF, BMP, PDF) using **Tesseract OCR**  
-- 🤖 **Extracts fields** with a **local LLM** (via [Ollama](https://ollama.com/)):
-  - `invoice_number, invoice_date, due_date, subtotal, tax_rate, tax_amount, total, balance_due, cash, change, gst_id`
-- ⚡ **Single-file** or **multi-file (batch)** processing  
-- 💻 **Two modes:**
-  - **Streamlit** → drag & drop UI for humans  
-  - **FastAPI** → machine API endpoints  
-- 📦 **Dockerized** → runs anywhere with a single command  
-
----
-
-## 🧭 Who Is It For?
+## Who Is It For?
 
 - 📊 **Accountants & operations teams** drowning in invoices  
 - 👩‍💻 **Developers** who want a private, local extractor (no API costs)  
@@ -38,7 +25,20 @@ If you’ve ever thought *“I wish I didn’t have to type numbers from receipt
 
 ---
 
-## 📸 Screenshots & Diagrams
+## Features
+
+- **Reads images & PDFs** (PNG, JPG/JPEG, WEBP, TIFF, BMP, PDF) using **Tesseract OCR**  
+- **Extracts fields** with a **local LLM** (via [Ollama](https://ollama.com/)):
+  - `invoice_number, invoice_date, due_date, subtotal, tax_rate, tax_amount, total, balance_due, cash, change, gst_id`
+- **Single-file** or **multi-file (batch)** processing  
+- **Two modes:**
+  - **Streamlit** → drag & drop UI for humans  
+  - **FastAPI** → machine API endpoints  
+- **Dockerized** → runs anywhere with a single command  
+
+---
+
+## Screenshots & Diagrams
 
 ### 1. Streamlit Batch Processing
 <p align="center">
@@ -66,7 +66,7 @@ If you’ve ever thought *“I wish I didn’t have to type numbers from receipt
 
 ---
 
-## 📂 Repo Structure
+## Repo Structure
 
 ```
 ├── app_streamlit.py # Streamlit UI
@@ -83,7 +83,7 @@ If you’ve ever thought *“I wish I didn’t have to type numbers from receipt
 ```
 ---
 
-## 🔧 Setup
+## Setup
 
 ### Prerequisites
 - **Python 3.11+** (if running locally)  
@@ -99,7 +99,7 @@ If you’ve ever thought *“I wish I didn’t have to type numbers from receipt
 
 ---
 
-## ▶️ Usage
+## Usage
 
 ### A. Run Streamlit (UI only)
 
@@ -123,13 +123,13 @@ export LLM_MODEL="gemma:latest"
 
 uvicorn fastapi_app:app --host 0.0.0.0 --port 8001 --reload
 ```
-#### 📌 API Docs
+#### API Docs
 Interactive API documentation is available at:  
 👉 http://127.0.0.1:8001/docs
 
 ---
 
-#### 📌 Endpoints
+#### Endpoints
 
 ##### Health Check
 GET /health
@@ -145,7 +145,7 @@ POST /extract-batch
 
 ---
 
-#### 🖥️ Example Usage (cURL)
+#### Example Usage (cURL)
 
 ##### Single File
 ```bash
@@ -183,7 +183,7 @@ docker run --rm -p 8001:8001 -p 8501:8501 \
 
 ---
 
-#### 🧪 Example Output
+#### Example Output
 ```json
 {
   "filename": "invoice1.jpg",
@@ -204,7 +204,7 @@ docker run --rm -p 8001:8001 -p 8501:8501 \
 }
 ```
 
-## 🛠️ Troubleshooting
+## Troubleshooting
 
 **“LLM read timeout / connect error”**  
 - Make sure **Ollama** is running and the model is pulled.  
@@ -221,7 +221,7 @@ docker run --rm -p 8001:8001 -p 8501:8501 \
   TESSERACT_CMD="C:\Program Files\Tesseract-OCR\tesseract.exe"
   ```
 
-  ## ⚠️ Known Limitations
+  ## Known Limitations
 
 - ⏳ **Speed**: CPU-bound; batch can be slow. GPU acceleration is a future upgrade.  
 - 📸 **OCR Quality**: Blurry/low-contrast images reduce accuracy.  
@@ -230,7 +230,7 @@ docker run --rm -p 8001:8001 -p 8501:8501 \
 
 ---
 
-## 🚀 Roadmap
+## Roadmap
 
 - ⚡ GPU acceleration (CUDA/DirectML) for faster extraction  
 - 🌍 Multi-language OCR (Spanish, German, Hindi, etc.)  
@@ -239,8 +239,6 @@ docker run --rm -p 8001:8001 -p 8501:8501 \
 - ☁️ Hosted/Public API for easy third-party integrations  
 
 ---
-
-## 🙌 Credits
 
 - **OCR** → [Tesseract](https://github.com/tesseract-ocr/tesseract)  
 - **LLM runtime** → [Ollama](https://ollama.com/)  
