@@ -240,6 +240,8 @@ docker run --rm -p 8001:8001 -p 8501:8501 \
 
 ---
 
+## Credits
+
 - **OCR** → [Tesseract](https://github.com/tesseract-ocr/tesseract)  
 - **LLM runtime** → [Ollama](https://ollama.com/)  
 - **Backend** → [FastAPI](https://fastapi.tiangolo.com/)  
