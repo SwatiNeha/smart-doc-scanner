@@ -16,10 +16,10 @@ Process single or multiple images, extract key fields (invoice number, dates, to
 
 ## Who Is It For?
 
-- 📊 **Accountants & operations teams** drowning in invoices  
-- 👩‍💻 **Developers** who want a private, local extractor (no API costs)  
-- 🎓 **Students & data enthusiasts** looking to learn OCR + LLM integration  
-- ⚙️ **Data teams** experimenting with OCR pipelines  
+- **Accountants & operations teams** drowning in invoices  
+- **Developers** who want a private, local extractor (no API costs)  
+- **Students & data enthusiasts** looking to learn OCR + LLM integration  
+- **Data teams** experimenting with OCR pipelines  
 
 If you’ve ever thought *“I wish I didn’t have to type numbers from receipts again”* then this tool is for you.
 
@@ -124,7 +124,7 @@ export LLM_MODEL="gemma:latest"
 uvicorn fastapi_app:app --host 0.0.0.0 --port 8001 --reload
 ```
 #### API Docs
-Interactive API documentation is available at:  
+Interactive API documentation will be available at:  
 👉 http://127.0.0.1:8001/docs
 
 ---
@@ -223,20 +223,20 @@ docker run --rm -p 8001:8001 -p 8501:8501 \
 
   ## Known Limitations
 
-- ⏳ **Speed**: CPU-bound; batch can be slow. GPU acceleration is a future upgrade.  
-- 📸 **OCR Quality**: Blurry/low-contrast images reduce accuracy.  
-- 🧩 **LLM Quirks**: May hallucinate fields; strict JSON schema helps contain it.  
-- 🌍 **Languages**: English by default; add Tesseract language packs for more.  
+- **Speed**: CPU-bound; batch can be slow. GPU acceleration is a future upgrade.  
+- **OCR Quality**: Blurry/low-contrast images reduce accuracy.  
+- **LLM Quirks**: May hallucinate fields; strict JSON schema helps contain it.  
+- **Languages**: English by default; add Tesseract language packs for more.  
 
 ---
 
 ## Roadmap
 
-- ⚡ GPU acceleration (CUDA/DirectML) for faster extraction  
-- 🌍 Multi-language OCR (Spanish, German, Hindi, etc.)  
-- 👀 Vision-Language models → skip OCR step entirely  
-- 🔗 Accounting integrations (Xero, QuickBooks, Notion)  
-- ☁️ Hosted/Public API for easy third-party integrations  
+- GPU acceleration (CUDA/DirectML) for faster extraction  
+- Multi-language OCR (Spanish, German, Hindi, etc.)  
+- Vision-Language models → skip OCR step entirely  
+- Accounting integrations (Xero, QuickBooks, Notion)  
+- Hosted/Public API for easy third-party integrations  
 
 ---
 
