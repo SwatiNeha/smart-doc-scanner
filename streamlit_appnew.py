@@ -14,8 +14,8 @@ openai.api_base = "https://api.groq.com/openai/v1"
 openai.api_key = os.getenv("GROQ_API_KEY")  # set in Streamlit Cloud secrets
 llm_model = "llama3-8b-8192"  # or "mixtral-8x7b-32768"
 
-Path to tesseract executable (adjust if needed)
-#pytesseract.pytesseract.tesseract_cmd = r'C:\Program Files\Tesseract-OCR\tesseract.exe'
+#Path to tesseract executable (adjust if needed)
+pytesseract.pytesseract.tesseract_cmd = r'C:\Program Files\Tesseract-OCR\tesseract.exe'
 
 # --- PROMPT TEMPLATE ---
 prompt_template = """
