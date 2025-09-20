@@ -8,7 +8,11 @@ import numpy as np
 import cv2
 import os
 
-import shutil, subprocess, streamlit as st
+import shutil, subprocess
+
+if not shutil.which("tesseract"):
+    subprocess.run(["apt-get", "update"], check=True)
+    subprocess.run(["apt-get", "install", "-y", "tesseract-ocr"], check=True)
 
 tess_path = shutil.which("tesseract")
 if tess_path:
