@@ -8,26 +8,13 @@ import numpy as np
 import cv2
 import os
 
-import shutil, subprocess
-
-if not shutil.which("tesseract"):
-    subprocess.run(["apt-get", "update"], check=True)
-    subprocess.run(["apt-get", "install", "-y", "tesseract-ocr"], check=True)
-
-tess_path = shutil.which("tesseract")
-if tess_path:
-    version = subprocess.check_output(["tesseract", "--version"]).decode("utf-8")
-    st.success(f"Tesseract installed at {tess_path}\n{version}")
-else:
-    st.error("Tesseract not found ❌ — packages.txt may be missing or misnamed")
-
 # --- GROQ LLM CONFIGURATION ---
 
 openai.api_base = "https://api.groq.com/openai/v1"
 openai.api_key = os.getenv("GROQ_API_KEY")  # set in Streamlit Cloud secrets
 llm_model = "llama3-8b-8192"  # or "mixtral-8x7b-32768"
 
-# Path to tesseract executable (adjust if needed)
+Path to tesseract executable (adjust if needed)
 #pytesseract.pytesseract.tesseract_cmd = r'C:\Program Files\Tesseract-OCR\tesseract.exe'
 
 # --- PROMPT TEMPLATE ---
