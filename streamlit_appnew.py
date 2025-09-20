@@ -6,12 +6,14 @@ import re
 import json
 import numpy as np
 import cv2
+import os
 
-# Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope Process
-# --- OLLAMA LOCAL LLM CONFIGURATION ---
-openai.api_base = "http://localhost:11434/v1"
-openai.api_key = "ollama"  # Dummy for openai library
-llm_model = "gemma3:latest"
+
+# --- GROQ LLM CONFIGURATION ---
+
+openai.api_base = "https://api.groq.com/openai/v1"
+openai.api_key = os.getenv("GROQ_API_KEY")  # set in Streamlit Cloud secrets
+llm_model = "llama3-8b-8192"  # or "mixtral-8x7b-32768"
 
 # Path to tesseract executable (adjust if needed)
 pytesseract.pytesseract.tesseract_cmd = r'C:\Program Files\Tesseract-OCR\tesseract.exe'
@@ -71,52 +73,47 @@ if uploaded_file is not None:
         custom_config = r'--oem 3 --psm 6'
         ocr_text = pytesseract.image_to_string(pil_img, lang="eng", config=custom_config)
 
-    # --- Allow user to edit/correct OCR text before field extraction ---
-    st.subheader("🔍 OCR Text (editable)")
-    edited_ocr_text = st.text_area(
-        "You can review/correct the OCR output before extracting invoice fields:",
-        ocr_text, height=300
-    )
+    st.subheader("🔍 OCR Text")
+    st.code(ocr_text, language="text")
 
-    if st.button("Extract Invoice Fields"):
-        with st.spinner("Extracting invoice fields using LLM..."):
-            prompt = prompt_template.format(invoice_text=edited_ocr_text)
-            try:
-                response = openai.ChatCompletion.create(
-                    model=llm_model,
-                    messages=[
-                        {"role": "system", "content": "You are a helpful invoice extraction assistant. If there"
-                        "is a date present but it doesnt have any label, assume it is the invoice date."},
-                        {"role": "user", "content": prompt}
-                    ],
-                    temperature=0.0,
-                    max_tokens=512,
-                )
-                content = response["choices"][0]["message"]["content"]
-            except Exception as e:
-                st.error(f"LLM extraction failed: {e}")
-                content = ""
+    # --- LLM Extraction ---
+    with st.spinner("Extracting invoice fields using LLM..."):
+        prompt = prompt_template.format(invoice_text=ocr_text)
+        try:
+            response = openai.ChatCompletion.create(
+                model=llm_model,
+                messages=[
+                    {"role": "system", "content": "You are a helpful invoice extraction assistant."},
+                    {"role": "user", "content": prompt}
+                ],
+                temperature=0.0,
+                max_tokens=512,
+            )
+            content = response["choices"][0]["message"]["content"]
+        except Exception as e:
+            st.error(f"LLM extraction failed: {e}")
+            content = ""
 
-            # --- Robust JSON extraction ---
-            def extract_first_json(text):
-                json_blocks = re.findall(r"```(?:json)?\s*([\s\S]+?)\s*```", text, flags=re.IGNORECASE)
-                for jb in json_blocks:
-                    try:
-                        return json.loads(jb)
-                    except Exception:
-                        continue
-                brace_blocks = re.findall(r"(\{[\s\S]+?\})", text)
-                for bb in brace_blocks:
-                    try:
-                        return json.loads(bb)
-                    except Exception:
-                        continue
-                return None
+        # --- Robust JSON extraction ---
+        def extract_first_json(text):
+            json_blocks = re.findall(r"```(?:json)?\s*([\s\S]+?)\s*```", text, flags=re.IGNORECASE)
+            for jb in json_blocks:
+                try:
+                    return json.loads(jb)
+                except Exception:
+                    continue
+            brace_blocks = re.findall(r"(\{[\s\S]+?\})", text)
+            for bb in brace_blocks:
+                try:
+                    return json.loads(bb)
+                except Exception:
+                    continue
+            return None
 
-            data = extract_first_json(content)
-            if not data or not isinstance(data, dict):
-                st.warning("Could not parse LLM output as JSON. Showing raw response:")
-                st.code(content)
-            else:
-                st.subheader("📋 Extracted Invoice Fields")
-                st.json(data)
+        data = extract_first_json(content)
+        if not data or not isinstance(data, dict):
+            st.warning("Could not parse LLM output as JSON. Showing raw response:")
+            st.code(content)
+        else:
+            st.subheader("📋 Extracted Invoice Fields")
+            st.json(data)
