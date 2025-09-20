@@ -8,6 +8,14 @@ import numpy as np
 import cv2
 import os
 
+import shutil, subprocess, streamlit as st
+
+tess_path = shutil.which("tesseract")
+if tess_path:
+    version = subprocess.check_output(["tesseract", "--version"]).decode("utf-8")
+    st.success(f"Tesseract installed at {tess_path}\n{version}")
+else:
+    st.error("Tesseract not found ❌ — packages.txt may be missing or misnamed")
 
 # --- GROQ LLM CONFIGURATION ---
 
