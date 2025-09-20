@@ -9,10 +9,9 @@ import cv2
 import os
 
 # --- GROQ LLM CONFIGURATION ---
-
 openai.api_base = "https://api.groq.com/openai/v1"
-openai.api_key = os.getenv("GROQ_API_KEY")  # set in Streamlit Cloud secrets
-llm_model = "llama3-8b-8192"  # or "mixtral-8x7b-32768"
+openai.api_key = os.getenv("GROQ_API_KEY", "")  # set in Streamlit Cloud secrets
+llm_model = "llama-3.3-70b-versatile" 
 
 #Path to tesseract executable (adjust if needed)
 pytesseract.pytesseract.tesseract_cmd = r'C:\Program Files\Tesseract-OCR\tesseract.exe'
